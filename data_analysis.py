@@ -11,8 +11,6 @@ file_path = "data/AllSets.json"
 
 with open(file_path) as data_file:  
     data = json.load(data_file)
-    
-df=pd.DataFrame(data)
 
 
 # In[21]:
@@ -25,13 +23,25 @@ for key in data:
 print("\nSets: {}".format(i))
 
 
-# In[16]:
+# In[24]:
 
-print(data["LEA"]["cards"])
+print(data["LEA"]["cards"][0])
 
 
-# In[11]:
+# In[32]:
 
-all_cards = pd.DataFrame(df, index=["cards"])
-pd.DataFrame(all_cards, index=["name"])
+df_lea = pd.DataFrame(data["LEA"]["cards"])
+
+card_info = df_lea[['name', 'manaCost', 'text', 'types', 'toughness', 'power', 'subtypes', 'rarity']]
+panel = pd.DataFrame(card_info, index=[0])
+print(panel)
+
+
+# In[38]:
+
+df_lea = pd.DataFrame(data["LEA"]["cards"])
+
+card_info = df_lea[['manaCost', 'types', 'toughness', 'power', 'subtypes', 'rarity']]
+panel = pd.DataFrame(card_info)
+print(panel)
 
